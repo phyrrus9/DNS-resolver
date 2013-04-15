@@ -27,7 +27,14 @@ int main(int argc, char *argv[])
 	{
 		struct hostent *hp;
 		hp = gethostbyname2(argv[i], AF_INET);
-		printf("%s: %s\n", argv[i], inet_ntoa(*((struct in_addr *)hp->h_addr)));
+		if (hp == NULL)
+		{
+			printf("%s: Can not resolve\n", argv[i]);
+		}
+		else
+		{
+			printf("%s: %s\n", argv[i], inet_ntoa(*((struct in_addr *)hp->h_addr)));
+		}
 	}
     }
 
